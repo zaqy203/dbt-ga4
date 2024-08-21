@@ -1,5 +1,5 @@
-name: 'ga4'
-version: '6.0.1'
+name: "ga4"
+version: "6.0.1"
 config-version: 2
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -8,8 +8,8 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
-target-path: "target"  # directory which will store compiled SQL files
-clean-targets:         # directories to be removed by `dbt clean`
+target-path: "target" # directory which will store compiled SQL files
+clean-targets: # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
@@ -18,3 +18,11 @@ models:
     +materialized: view
     marts:
       +materialized: table
+vars:
+  ga4:
+    source_project: "cash-landing-page-20240322" # Project that contains raw GA4 data
+    combined_dataset: "my_combined_data" # Dataset where multi-property data is cloned
+    property_ids: [433253088] 
+    start_date: "20240815" # Earliest date to load
+    static_incremental_days: 1 # Number of days to scan and reprocess on each run
+
